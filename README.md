@@ -51,6 +51,7 @@ Sources:
   * graph controller (generate new graph, visualize/run, algorithm dropdown)
   * visualization controls (skip, end, reset)
 * Will be hidden during visualization, and reappear after it is finished
+* visualize button disabled until start and end node selected
 
 ### Pathfinding Visualization
 * each algorithm will have an *open set* and a *closed set*
