@@ -1,16 +1,32 @@
 
 def astar(drawFunction):
     print("A*")
-    drawFunction()
+    if len(processes) != 0: # already a process running
+        processes[0].terminate() # kill process
+        processes.pop() # remove from processes
+
+    #drawFunction()
 
 def bfs(drawFunction):
     print("bfs")
-    drawFunction()
+    if len(processes) != 0: # already a process running
+        processes[0].terminate() # kill process
+        processes.pop() # remove from processes
+
+    #drawFunction()
 
 def dfs(drawFunction):
     print("dfs")
-    drawFunction() 
+    if len(processes) != 0: # already a process running
+        processes[0].terminate() # kill process
+        processes.pop() # remove from processes
+
+    #drawFunction() 
 
 def dijkstra(drawFunction):
     print("dijkstra's")
-    drawFunction()
+    if len(processes) != 0: # already a process running
+        processes[0].terminate() # kill process
+        processes.pop() # remove from processes
+
+    #drawFunction()
