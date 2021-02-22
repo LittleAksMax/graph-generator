@@ -31,6 +31,23 @@ Sources:
 
 ##### NOTE: when generating, it would be more efficient to go through and check whether the edge is kept if you generate a random number and compare it to ***p*** there when considering the edge, rather than creating a full mesh and then going through the edges again
 
+## Node class
+* each node will need an x and y co-ordinate
+  * will do by creating a Coor class (simply with x and y variables)
+* each node will have a neighbors array
+  * this array will store all adjacent nodes to that node
+  * all elements in the neighbors array will have the node in their own neighbors arrays
+* each node will have a weights array
+  * weights decided by distance between nodes
+  * the weight on the edge between a node and its neighbor (*```node.neighbor[x]```*) will be the corresponding weight in the weights array (*```node.weights[x]```*)
+* a status
+  * this will decide whether it is:
+    * the Start
+    * the End
+    * Unvisited
+    * in the Openset (on the front)
+    * in the Closedset (visited)
+
 ## Algorithms 
 
 ### Breadth First Search (BFS)
@@ -38,7 +55,7 @@ Sources:
  * I am implementing a weighted graph where the weights depend on the distances between the nodes
  * Therefore, in my implementation this algorithm will not find the shortest path, but just a path to the end
 ```
-procedure BFS(start, end)
+function BFS(start, end)
   openSet := Queue(start)
   closedSet := List()
   while not openSet.empty()
@@ -56,7 +73,7 @@ procedure BFS(start, end)
     endfor
   endwhile
   return false                // or whatever you want to do when you don't find the end node
-endprocedure
+endfunction
 ```
 
 ### Depth First Search (DFS)
@@ -64,7 +81,7 @@ endprocedure
 * the key difference between DFS and BFS is that DFS uses a stack, and uses backtracking (by exploiting how a stack works)
 ```
 // iterative implementation
-procedure DFS(start, end)
+function DFS(start, end)
   openSet := Stack(start)  
   closedSet := List()
 
@@ -84,11 +101,11 @@ procedure DFS(start, end)
     endfor
   endwhile
   return false                // or whatever you want to do when you don't find the end node
-endprocedure
+endfunction
 ```
 ```
 // recursive implementation
-procedure DFS(current, end, openSet, closedSet)
+function DFS(current, end, openSet, closedSet)
   if current in openSet or current in closedSet
     return false              // or whatever you want to do when you don't find the end node
   endif
@@ -106,17 +123,54 @@ procedure DFS(current, end, openSet, closedSet)
   endfor
 
   return false                // or whatever you want to do when you don't find the end node
-endprocedure
+endfunction
 ```
 
 ### Dijkstra's
+* Dijkstra's just explores all possible paths to the end from the start
+* guaranteed to find the shortest path in a weighted graph
 ```
 
 ```
 
 ### A*
+* A* is based on Dijkstra's algorithm
+  * the only difference is that A* tries to look for a better path by using a heuristic function which gives priority to nodes that are supposed to be better than others
+* guaranteed to find the shortest path in a weighted graph
 ```
+function A_Star(start, end, h)
+  openSet := PQueue(start)
 
+  gScore := map with default value of Infinity
+  gScore[start] := 0
+
+  // For node n, fScore[n] := gScore[n] + h(n). fScore[n] represents our current best guess as to
+  // how short a path from start to finish can be if it goes through n.
+  fScore := map with default value of Infinity
+  fScore[start] := h(start)
+
+  while openSet is not empty
+    // This operation can occur in O(1) time if openSet is a min-heap or a priority queue
+    current := the node in openSet having the lowest fScore[] value
+    if current = goal
+      return true
+    endif
+
+    current = openSet.pop()
+    foreach node in current.neighbors
+      tentative_gScore := gScore[current] + d(current, neighbor)
+      if tentative_gScore < gScore[neighbor]
+        cameFrom[neighbor] := current
+        gScore[neighbor] := tentative_gScore
+        fScore[neighbor] := gScore[neighbor] + h(neighbor) // h() is a function that returns the distance between 2 nodes
+        if neighbor not in openSet
+          openSet.add(neighbor)
+        endif
+      endif
+    endfor
+  endwhile
+  return false
+endfunction
 ```
 
 ##### NOTE: in the implementation, it would be more efficient to use a status variable for each node, instead of iterating through an array for every node, however, the openSet still does need to exist

@@ -17,6 +17,12 @@ def visualizeBtnClicked(console, chosenAlgorithm):
 def generateBtnClicked(nodeCount, edgeCount):
     generation.generate(nodeCount, edgeCount) 
 
-def sliderValueChanged(slider, valueLabel):
+def nodeSliderValueChanged(slider, edgeSlider, valueLabel):
+    edgeSlider.setMaximum(slider.value() * (slider.value() - 1) / 2) # this is important, so the edge slider stays in bounds
+
+    newValue = str(slider.value())
+    valueLabel.setText(newValue)
+
+def edgeSliderValueChanged(slider, valueLabel):
     newValue = str(slider.value())
     valueLabel.setText(newValue)
