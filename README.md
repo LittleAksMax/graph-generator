@@ -35,6 +35,9 @@ Sources:
 ## Algorithms 
 
 ### Breadth First Search (BFS)
+* will find shortest path in an unweighted graph
+ * I am implementing a weighted graph where the weights depend on the distances between the nodes
+ * Therefore, in my implementation this algorithm will not find the shortest path, but just a path to the end
 ```
 procedure BFS(start, end)
   openSet := Queue(start)
