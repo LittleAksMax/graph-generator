@@ -49,7 +49,7 @@ procedure BFS(start, end)
       return true             // or whatever you want to do when you find the end node
     endif
     foreach node in current.neighbors
-      if node in closedSet
+      if node in closedSet or node in openSet
         continue
       endif
       openSet.enqueue(node)   // label neighbor as discovered node 
@@ -60,8 +60,53 @@ endprocedure
 ```
 
 ### Depth First Search (DFS)
+* finds shortest path in unweighted graph
+* the key difference between DFS and BFS is that DFS uses a stack, and uses backtracking (by exploiting how a stack works)
 ```
+// iterative implementation
+procedure DFS(start, end)
+  openSet := Stack(start)  
+  closedSet := List()
 
+  while not openSet.empty()
+    current := Stack.pop()
+    closedSet.add(current)    // label current as visited
+
+    if current = end
+      return true             // or whatever you want to do when you find the end node
+    endif
+
+    foreach node in current.neighbors
+      if node in closedSet or node in openSet
+        continue
+      endif
+      openSet.push(node)      // label neighbor as discovered node
+    endfor
+  endwhile
+  return false                // or whatever you want to do when you don't find the end node
+endprocedure
+```
+```
+// recursive implementation
+procedure DFS(current, end, openSet, closedSet)
+  if current in openSet or current in closedSet
+    return false              // or whatever you want to do when you don't find the end node
+  endif
+  if current = end
+    return true               // or whatever you want to do when you find the end node
+  endif
+
+  foreach node in current.neighbors
+    if node in openSet or node in closedSet
+      continue
+    endif
+    if DFS(node, end, openSet, closedSet)
+      return true             // or whatever you want to do when you find the end node
+    endif
+  endfor
+
+  return false                // or whatever you want to do when you don't find the end node
+endprocedure
 ```
 
 ### Dijkstra's
@@ -73,6 +118,8 @@ endprocedure
 ```
 
 ```
+
+##### NOTE: in the implementation, it would be more efficient to use a status variable for each node, instead of iterating through an array for every node, however, the openSet still does need to exist
 
 ## Graphics
 * OpenGL and Pygame
