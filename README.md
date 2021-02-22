@@ -189,7 +189,7 @@ endfunction
 
 ##### Graph controller
 
-![Console Graph Tab](public/console_tab_1.png)
+![Console Graph Tab](public/console_tab_1.gif)
 
 ##### Visualization Controls
 
