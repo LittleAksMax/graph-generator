@@ -54,6 +54,14 @@ Sources:
 * Will be hidden during visualization, and reappear after it is finished
 * visualize button disabled until start and end node selected
 
+##### Graph controller
+
+![Console Graph Tab](public/console_tab_1.png)
+
+##### Visualization Controls
+
+![Console Controls Tab](public/console_tab_2.png)
+
 ### Pathfinding Visualization
 * each algorithm will have an *open set* and a *closed set*
 * the start node will be <span style="color:orange">*orange*</span>
