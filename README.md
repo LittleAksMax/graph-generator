@@ -176,8 +176,8 @@ endfunction
 ##### NOTE: in the implementation, it would be more efficient to use a status variable for each node, instead of iterating through an array for every node, however, the openSet still does need to exist
 
 ## Graphics
-* OpenGL and Pygame
-  * Allows client to pan around the plane 
+* Pygame
+  * I was going to use OpenGL but realized there is no reason to use OpenGL in this project 
 
 ### Console
 * made in PyQt5

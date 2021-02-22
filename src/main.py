@@ -1,7 +1,7 @@
 import sys
 from console import Ui_Console
 from PyQt5 import QtWidgets
-from pygame import init
+import pygame
 
 import draw
 from generation import processes
@@ -13,11 +13,12 @@ def main():
     ui.setupUi(Console)
     Console.show()
     sys.exit(app.exec_())
+    pygame.quit() # quit pygame
 
     # only one process but I want to bypass error when there are 0 processes
     for proc in generation.processes:
         proc.join()
 
 if __name__ == "__main__":
-    init() # initialize pygame
+    pygame.init() # initialize pygame
     main()

@@ -1,4 +1,4 @@
-from constants import WIDTH, HEIGHT, EDGE_OFFSET
+from constants import WIDTH, HEIGHT
 from node import Node
 from random import randint, uniform
 from draw import visualize
@@ -13,14 +13,19 @@ startNodeLabelled = False
 endNodeLabelled = False
 
 def generate(nodeCount, edgeCount):
+    vertices = [] # empty out vertices
+    edges = [] # empty out edges
+
     if nodeCount != 0: # nodeCount is 0, there is a ZeroDivisionError when calculating p
         # p is probability threshold
         # explanation in README.md
         p = (2 * edgeCount) / (nodeCount * (nodeCount - 1))
         
         for i in range(nodeCount):
-            vertices.append(Node(randint(EDGE_OFFSET, WIDTH - EDGE_OFFSET), \
-                randint(EDGE_OFFSET, HEIGHT - EDGE_OFFSET)))
+            x = randint(-1 * (WIDTH / 2), WIDTH / 2)
+            y = randint(-1 * (HEIGHT / 2), HEIGHT / 2)
+            vertices.append((x, y, 0)) # 0 z-coordinate
+            Node.nodes.append(Node(x, y))
 
         # for optimization purposes, I will go through and join up as I go
         # rather then add all the links, and then delete the ones that don't
