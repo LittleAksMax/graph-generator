@@ -2,14 +2,15 @@ import generation
 import draw
 import algorithm
 
+funcs = {
+    "Breadth First Search (BFS)": algorithm.bfs,
+    "Depth First Search (DFS)": algorithm.dfs,
+    "Dijkstra's": algorithm.dijkstra,
+    "A*": algorithm.astar
+}
+
 def visualizeBtnClicked(console, chosenAlgorithm):
     console.hide()
-    funcs = {
-        "Breadth First Search (BFS)": algorithm.bfs,
-        "Depth First Search (DFS)": algorithm.dfs,
-        "Dijkstra's": algorithm.dijkstra,
-        "A*": algorithm.astar
-    }
     funcs[chosenAlgorithm](draw.visualize)
     console.show()
 
