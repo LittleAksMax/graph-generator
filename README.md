@@ -31,6 +31,23 @@ Sources:
 
 ##### NOTE: when generating, it would be more efficient to go through and check whether the edge is kept if you generate a random number and compare it to ***p*** there when considering the edge, rather than creating a full mesh and then going through the edges again
 
+## Node class
+* each node will need an x and y co-ordinate
+  * will do by creating a Coor class (simply with x and y variables)
+* each node will have a neighbors array
+  * this array will store all adjacent nodes to that node
+  * all elements in the neighbors array will have the node in their own neighbors arrays
+* each node will have a weights array
+  * weights decided by distance between nodes
+  * the weight on the edge between a node and its neighbor (*```node.neighbor[x]```*) will be the corresponding weight in the weights array (*```node.weights[x]```*)
+* a status
+  * this will decide whether it is:
+    * the Start
+    * the End
+    * Unvisited
+    * in the Openset (on the front)
+    * in the Closedset (visited)
+
 ## Algorithms 
 
 ### Breadth First Search (BFS)
