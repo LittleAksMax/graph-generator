@@ -34,13 +34,25 @@ Sources:
 
 ## Algorithms 
 
-### Breadth First Search (DFS)
+### Breadth First Search (BFS)
+```
+
+```
 
 ### Depth First Search (DFS)
+```
+
+```
 
 ### Dijkstra's
+```
+
+```
 
 ### A*
+```
+
+```
 
 ## Graphics
 * OpenGL and Pygame
