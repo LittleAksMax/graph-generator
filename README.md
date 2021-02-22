@@ -36,7 +36,25 @@ Sources:
 
 ### Breadth First Search (BFS)
 ```
-
+procedure BFS(start, end)
+  openSet := Queue(start)
+  closedSet := List()
+  while not openSet.empty()
+    current := openSet.dequeue()
+    closedSet.add(current)    // label current as visited
+    
+    if current = end
+      return true             // or whatever you want to do when you find the end node
+    endif
+    foreach node in current.neighbors
+      if node in closedSet
+        continue
+      endif
+      openSet.enqueue(node)   // label neighbor as discovered node 
+    endfor
+  endwhile
+  return false                // or whatever you want to do when you don't find the end node
+endprocedure
 ```
 
 ### Depth First Search (DFS)
