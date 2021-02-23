@@ -5,6 +5,7 @@ from OpenGL.GLU import *
 from OpenGL_accelerate import *
 
 from constants import *
+from math import *
 
 WHITE = (255, 255, 255)
 
@@ -23,12 +24,18 @@ def drawLines(vertices, edges):
 
     glEnd() 
 
-def drawNodes(nodes):
-    glBegin()
-    glEnd()
+def drawNodes(nodes):    
+    
+    for node in nodes:
+        glBegin(GL_POLYGON)
+        for i in range(100):    
+            cosine = CIRCLE_RADIUS * cos(i * 2 * pi / CIRCLE_SIDES) + node.pos.x    
+            sine = CIRCLE_RADIUS * sin(i * 2 * pi / CIRCLE_SIDES) + node.pos.y    
+            glVertex2f(cosine, sine)
+        glEnd()
 
 # probably going to use multiprocessing so the console can run alongside it
-def visualize(vertices, edges):
+def visualize(vertices, edges, nodes):
     win = create_window()
 
     # set up player perspective
@@ -37,8 +44,6 @@ def visualize(vertices, edges):
     x = X_DEFAULT
     y = Y_DEFAULT
     z = Z_DEFAULT
-    move = 5
-    scroll = 10
 
     glTranslatef(x, y, z) # x, y, z movement
     #glRotatef(0, 0, 0, 0) # deg, x, y, z 
@@ -54,11 +59,11 @@ def visualize(vertices, edges):
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 4:
-                    z += scroll
-                    glTranslatef(0, 0, scroll)
+                    z += SCROLL
+                    glTranslatef(0, 0, SCROLL)
                 elif event.button == 5:
-                    z -= scroll
-                    glTranslatef(0, 0, -1 * scroll)
+                    z -= SCROLL
+                    glTranslatef(0, 0, -1 * SCROLL)
         
         #for i in range(len(edges)): # same as len(vertices) and len(Node.nodes)
         #    p1 = (vertices[edges[i][0]][0], vertices[edges[i][0]][1])
@@ -66,17 +71,17 @@ def visualize(vertices, edges):
         #    pygame.draw.line(win, WHITE, p1, p2)
         keys = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            x += move
-            glTranslatef(move, 0, 0)
+            x += MOVE
+            glTranslatef(MOVE, 0, 0)
         if keys[pygame.K_UP]:
-            y -= move
-            glTranslatef(0, -1 * move, 0)
+            y -= MOVE
+            glTranslatef(0, -1 * MOVE, 0)
         if keys[pygame.K_DOWN]:
-            y += move
-            glTranslatef(0, move, 0)
+            y += MOVE
+            glTranslatef(0, MOVE, 0)
         if keys[pygame.K_RIGHT]:
-            x -= move
-            glTranslatef(-1 * move, 0, 0)
+            x -= MOVE
+            glTranslatef(-1 * MOVE, 0, 0)
         if keys[pygame.K_RETURN]: # Enter
             # reset co-ordinates
             glTranslatef(X_DEFAULT - x, Y_DEFAULT - y, Z_DEFAULT - z)
@@ -85,6 +90,7 @@ def visualize(vertices, edges):
             z = Z_DEFAULT
 
         drawLines(vertices, edges)
+        drawNodes(nodes)
 
         pygame.display.flip()
         pygame.time.wait(10) # 10ms per frame

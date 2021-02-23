@@ -15,8 +15,9 @@ endNodeLabelled = False
 def generate(nodeCount, edgeCount):
     vertices = [] # empty out vertices
     edges = [] # empty out edges
+    Node.nodes = []
 
-    if nodeCount != 0: # nodeCount is 0, there is a ZeroDivisionError when calculating p
+    if not nodeCount <= 1: # nodeCount is 0, there is a ZeroDivisionError when calculating p
         # p is probability threshold
         # explanation in README.md
         p = (2 * edgeCount) / (nodeCount * (nodeCount - 1))
@@ -39,7 +40,7 @@ def generate(nodeCount, edgeCount):
     if len(processes) != 0: # already a process running
         processes[0].terminate() # kill process
         processes.pop() # remove from processes
-    p = Process(target=visualize, args=[vertices, edges])
+    p = Process(target=visualize, args=[vertices, edges, Node.nodes])
     p.start()
     processes.append(p)
     #visualize(vertices, edges)
