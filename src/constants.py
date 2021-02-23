@@ -9,6 +9,15 @@ Y_DEFAULT = 0
 Z_DEFAULT = -325
 
 CIRCLE_SIDES = 32
-CIRCLE_RADIUS = 3
+CIRCLE_RADIUS = 5
 MOVE = 3
 SCROLL = 7.5
+
+GENERATION_RADIUS = 800
+
+START = (255, 255, 0) # orange
+END = (0, 255, 255) # cyan
+UNVISITED = (64, 64, 64) # grey
+OPENSET = (0, 255, 0) # green
+CLOSEDSET = (255, 0, 0) # red
+DEFAULT = (255, 255, 255) # white

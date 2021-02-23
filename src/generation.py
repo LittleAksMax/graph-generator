@@ -1,4 +1,4 @@
-from constants import WIDTH, HEIGHT
+from constants import GENERATION_RADIUS
 from node import Node
 from random import randint, uniform
 from draw import visualize
@@ -15,7 +15,7 @@ endNodeLabelled = False
 def generate(nodeCount, edgeCount):
     vertices = [] # empty out vertices
     edges = [] # empty out edges
-    Node.nodes = []
+    Node.nodes = [] # empty out existing nodes
 
     if not nodeCount <= 1: # nodeCount is 0, there is a ZeroDivisionError when calculating p
         # p is probability threshold
@@ -23,8 +23,8 @@ def generate(nodeCount, edgeCount):
         p = (2 * edgeCount) / (nodeCount * (nodeCount - 1))
         
         for i in range(nodeCount):
-            x = randint(-1 * (WIDTH / 2), WIDTH / 2)
-            y = randint(-1 * (HEIGHT / 2), HEIGHT / 2)
+            x = randint(-1 * (GENERATION_RADIUS / 2), GENERATION_RADIUS / 2)
+            y = randint(-1 * (GENERATION_RADIUS / 2), GENERATION_RADIUS / 2)
             vertices.append((x, y, 0)) # 0 z-coordinate
             Node.nodes.append(Node(x, y))
 

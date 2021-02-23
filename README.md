@@ -199,7 +199,7 @@ endfunction
 * each algorithm will have an *open set* and a *closed set*
 * the start node will be <span style="color:orange">*orange*</span>
 * the end node will be <span style="color:cyan">*cyan*</span>
-* unvisited nodes will be a *white* (on a *black* background)
+* unvisited nodes will be a *light-gray* (on a *black* background)
 * nodes on the front (*open set*) will be <span style="color:green">*green*</span>
 * nodes that have already been considered/visited (*closed set*) will be <span style="color:red">*red*</span>
 * at the end, the nodes that consist of the path from start to end will be <span style="color:purple">*purple*</span>
