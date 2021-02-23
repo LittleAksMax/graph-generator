@@ -74,12 +74,12 @@ def visualize(vertices, edges, nodes):
             
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 4:
-                    if z + SCROLL < -1 * Z_MAX_CLIP:              
+                    if z + SCROLL >= -1 * Z_MIN_CLIP:              
                         continue
                     z += SCROLL
                     glTranslatef(0, 0, SCROLL)
                 elif event.button == 5:
-                    if z - SCROLL > -1 * Z_MIN_CLIP:     
+                    if z - SCROLL <= -1 * Z_MAX_CLIP:     
                         continue
                     z -= SCROLL
                     glTranslatef(0, 0, -1 * SCROLL)

@@ -208,4 +208,5 @@ endfunction
   * skip (only draw at the end)
   * end (exit the current visualization)
   * reset (go back to untouched graph)
+  * reset the camera position to its default
 * once the visualization is complete, the client can press *Enter*, to exit the visualization and show the console again 
