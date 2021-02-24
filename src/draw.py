@@ -41,8 +41,8 @@ def drawNodes(nodes):
             glColor3fv(END)
 
         for i in range(100):    
-            cosine = CIRCLE_RADIUS * cos(i * 2 * pi / CIRCLE_SIDES) + node.pos.x    
-            sine = CIRCLE_RADIUS * sin(i * 2 * pi / CIRCLE_SIDES) + node.pos.y    
+            cosine = CIRCLE_RADIUS * cos(i * 2 * pi / CIRCLE_SIDES) + node.pos[0]   
+            sine = CIRCLE_RADIUS * sin(i * 2 * pi / CIRCLE_SIDES) + node.pos[1] 
             glVertex2f(cosine, sine)
         glEnd()
 
@@ -51,6 +51,11 @@ def drawNodes(nodes):
 # probably going to use multiprocessing so the console can run alongside it
 def visualize(vertices, edges, nodes):
     win = create_window()
+
+    for node in nodes:
+        print(node)
+        for i in range(len(node.neighbors)):
+            print(node.neighbors[i], node.weights[i])
 
     # set up player perspective
     gluPerspective(100, WIDTH // HEIGHT, Z_MIN_CLIP, Z_MAX_CLIP) # FOV (deg), aspect ratio (width/height), clipping ranges

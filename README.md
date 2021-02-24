@@ -31,6 +31,7 @@ Sources:
 
 ##### NOTE: when generating, it would be more efficient to go through and check whether the edge is kept if you generate a random number and compare it to ***p*** there when considering the edge, rather than creating a full mesh and then going through the edges again
 
+Example of a randomly generated graph
 ![Randomly generated graph example](public/moving_panning_in_graph.gif)
 
 ## Node class
