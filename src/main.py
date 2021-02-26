@@ -5,6 +5,7 @@ import pygame
 
 import draw
 from generation import processes
+import settings
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
@@ -12,6 +13,9 @@ def main():
     ui = Ui_Console()
     ui.setupUi(Console)
     Console.show()
+    
+    settings.console = ui
+
     sys.exit(app.exec_())
     pygame.quit() # quit pygame
 
@@ -21,4 +25,5 @@ def main():
 
 if __name__ == "__main__":
     pygame.init() # initialize pygame
+    settings.init()
     main()

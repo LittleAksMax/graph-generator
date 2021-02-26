@@ -52,11 +52,6 @@ def drawNodes(nodes):
 def visualize(vertices, edges, nodes):
     win = create_window()
 
-    for node in nodes:
-        print(node)
-        for i in range(len(node.neighbors)):
-            print(node.neighbors[i], node.weights[i])
-
     # set up player perspective
     gluPerspective(100, WIDTH // HEIGHT, Z_MIN_CLIP, Z_MAX_CLIP) # FOV (deg), aspect ratio (width/height), clipping ranges
                                          # at what distances between z co-ordinates do you start and stop seeing an object  
