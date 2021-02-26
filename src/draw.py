@@ -41,8 +41,8 @@ def drawNodes(nodes):
             glColor3fv(END)
 
         for i in range(100):    
-            cosine = CIRCLE_RADIUS * cos(i * 2 * pi / CIRCLE_SIDES) + node.pos.x    
-            sine = CIRCLE_RADIUS * sin(i * 2 * pi / CIRCLE_SIDES) + node.pos.y    
+            cosine = CIRCLE_RADIUS * cos(i * 2 * pi / CIRCLE_SIDES) + node.pos[0]   
+            sine = CIRCLE_RADIUS * sin(i * 2 * pi / CIRCLE_SIDES) + node.pos[1] 
             glVertex2f(cosine, sine)
         glEnd()
 
