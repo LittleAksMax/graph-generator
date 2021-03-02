@@ -37,7 +37,6 @@ class Ui_Console(object):
         self.nodeCountLbl.setFont(font)
         self.nodeCountLbl.setObjectName("nodeCountLbl")
         self.visualizeBtn = QtWidgets.QPushButton(self.controllerTab)
-        self.visualizeBtn.setEnabled(False)
         self.visualizeBtn.setGeometry(QtCore.QRect(250, 80, 221, 51))
         font = QtGui.QFont()
         font.setFamily("Fira Mono")
@@ -166,7 +165,6 @@ class Ui_Console(object):
         self.nodeSldr.valueChanged.connect(lambda: console_behavior.nodeSliderValueChanged(self.nodeSldr, self.edgeSldr, self.nodeCountValueLbl))
 
         self.generateBtn.clicked.connect(lambda: console_behavior.generateBtnClicked(self.nodeSldr.value(), self.edgeSldr.value()))
-        #self.visualizeBtn.setEnabled(True)
         self.visualizeBtn.clicked.connect(lambda: console_behavior.visualizeBtnClicked(Console, self.algorithmDropdown.currentText()))
 
     def retranslateUi(self, Console):
