@@ -1,6 +1,7 @@
 import generation
 import draw
 import algorithm
+import settings
 
 funcs = {
     "Breadth First Search (BFS)": algorithm.bfs,
@@ -10,6 +11,8 @@ funcs = {
 }
 
 def visualizeBtnClicked(console, chosenAlgorithm):
+    if not (settings.nodesLabelled[0] and settings.nodesLabelled[1]): # return if start and end nodes not labelled
+        return
     console.hide()
     funcs[chosenAlgorithm](draw.visualize)
     console.show()
